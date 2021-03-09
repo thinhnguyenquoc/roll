@@ -275,7 +275,7 @@ let rollDice = async () => {
                 cf.bid = cf.rl < - cf.min ? Math.abs(cf.rl) : cf.min
             }
             
-            let time = 500
+            let time = 2000
 
             cf.bi++
             // cf.bii++
