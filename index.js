@@ -271,7 +271,7 @@ let rollDice = async () => {
             }
 
             if(cf.bi % 40 == 0){
-                cf.bid = cf.rl < 0 ? Math.abs(cf.rl) : cf.min
+                cf.bid = cf.rl < - cf.min ? Math.abs(cf.rl) : cf.min
             }
             
             let time = 5000
@@ -523,6 +523,9 @@ let roll = () => {
 
     });
     axios.get('https://roll-1.herokuapp.com')
+    axios.get('https://roll-2.herokuapp.com')
+    axios.get('https://roll-3.herokuapp.com')
+    axios.get('https://roll-4.herokuapp.com')
 }
 
 let roll1 = () => {
