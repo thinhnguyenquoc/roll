@@ -271,11 +271,11 @@ let rollDice = async () => {
             }
 
             cf.url = cf.url == 'hi' ? 'lo' : 'hi'
-            if(cf.bi % 10 == 0){
+            if(cf.bi % 20 == 0){
                 cf.bid *= 2
             }
             
-            let time = 2001
+            let time = 5000
 
             cf.bi++
             // cf.bii++
