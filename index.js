@@ -51,8 +51,6 @@ let init = () => {
     }
     else
         cf = JSON.parse(JSON.stringify(cf_a))
-
-    rollDice()
     roll()
     roll1()
     roll2()
