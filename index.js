@@ -264,7 +264,7 @@ let rollDice = async () => {
             cf.rl += profit
             let total = cf.balances.reduce((a, b) => a + b, 0)
 
-            if(cf.balance - cf.min / 2 <= total){
+            if(cf.balance - cf.min <= total){
                 cf.balance = total 
                 cf.bid = cf.min
                 cf.rl = 0
@@ -275,7 +275,7 @@ let rollDice = async () => {
                 cf.url = cf.url == 'hi' ? 'lo' : 'hi'
             }
             
-            let time = 1000
+            let time = 500
 
             cf.bi++
             // cf.bii++
