@@ -272,6 +272,7 @@ let rollDice = async () => {
 
             if(cf.bi % 5 == 0){
                 cf.bid = cf.rl < - cf.min ? Math.abs(cf.rl) : cf.min
+                cf.url = cf.url == 'hi' ? 'lo' : 'hi'
             }
             
             let time = 1000
