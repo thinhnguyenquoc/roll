@@ -286,7 +286,7 @@ let rollDice = async () => {
                 cf.countl = cf.countw = 0
             }
             
-            let time = 0
+            let time = 100
 
             cf.bi++
             // cf.bii++
