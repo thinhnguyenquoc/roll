@@ -17,6 +17,8 @@ let cf_a = {
     win: 'w',
     balance: 0,
     count: 0,
+    countl: 0,
+    countw: 0,
     url: 'hi',
     a: 2,
     rl: 0,
@@ -51,6 +53,7 @@ let init = () => {
     }
     else
         cf = JSON.parse(JSON.stringify(cf_a))
+        // rollDice()
     roll()
     roll1()
     roll2()
@@ -262,22 +265,32 @@ let rollDice = async () => {
             cf.rl += profit
             let total = cf.balances.reduce((a, b) => a + b, 0)
 
-            if(cf.balance - cf.min <= total){
+            if(cf.balance - cf.min/2 <= total){
                 cf.balance = total 
                 cf.bid = cf.min
-                cf.rl = 0
             }
 
-            cf.url = cf.url == 'hi' ? 'lo' : 'hi'
-            if(cf.bi % 20 == 0){
-                cf.bid *= 2
+            if(cf.win == 'w')
+                cf.countw++
+            else
+                cf.countl++
+
+            if(cf.countl * 0.475 >= cf.countw * 0.525){
+                cf.bid /= 1.025                          
+            }
+            else
+                cf.bid *= 1.05
+
+            if(cf.bid < cf.min/2){
+                cf.bid = cf.min 
+                cf.countl = cf.countw = 0
             }
             
-            let time = 5000
+            let time = 0
 
             cf.bi++
             // cf.bii++
-            // if(cf.bi % 10 == 0)
+            if(cf.bi % 10 == 0)
             console.table([{
                 index: cf.bi,
                 // subindex: cf.bii,
