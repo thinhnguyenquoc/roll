@@ -383,6 +383,7 @@ let rollDice = async () => {
         if (res.data) {
             cf.count++
             let data = res.data
+	 
             var params = data.split(':');
             if ((parseFloat(params[18]) / 1e-8).toFixed(0) > 1000) {
                 await axios.get(`https://freebitco.in/?op=credit_deposit_bonus&amount=0.00001&csrf_token=${token}`,
@@ -410,6 +411,7 @@ let rollDice = async () => {
             let currentBalance = parseFloat(params[23]) + parseFloat(params[21])
             cf.win = params[1]
             if (cf.win != 'w' && cf.win != 'l') {
+		console.log(res.data, res.status)
                 cf.oldr++
                 sleep(10000)
                 cf.balances[(cf.count - 1) % cf.balances.length] = 0
