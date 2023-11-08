@@ -35,6 +35,7 @@ let cf_a = {
   balances: [0, 0, 0, 0],
   bet: 1,
   total: 0,
+  delta: 1e-8,
 };
 
 var cf = null;
@@ -265,17 +266,22 @@ let rollDice = async () => {
 
       if (cf.rl >= 0) {
         cf.bid = cf.min;
+        cf.delta = cf.min;
       } else {
-        cf.bid += cf.min;
+        if (cf.delta / cf.bid <= 1 / 19) {
+          cf.delta += cf.min;
+        }
+        cf.bid += cf.delta;
       }
-
-      console.table([
-        {
-          bid: parseInt(cf.bid / cf.min),
-          tt: parseInt(cf.total / cf.min),
-          rl_cccc: (cf.rl / cf.min).toFixed(0),
-        },
-      ]);
+      if (cf.count % 20 == 0)
+        console.table([
+          {
+            count: cf.count,
+            bid: parseInt(cf.bid / cf.min),
+            tt: parseInt(cf.total / cf.min),
+            rl_cccc: (cf.rl / cf.min).toFixed(0),
+          },
+        ]);
 
       if (!cf.r) {
         storeData(cf, path);
