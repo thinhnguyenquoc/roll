@@ -264,15 +264,17 @@ let rollDice = async () => {
       total = cf.balances.reduce((a, b) => a + b, 0);
       cf.total = total;
 
+      if (cf.count % 40 == 0) {
+        if (cf.rl < 0) cf.url = "lo";
+        else cf.url = "hi";
+      }
+
       if (cf.rl >= 0) {
         cf.bid = cf.min;
-        cf.delta = cf.min;
       } else {
-        if (cf.delta / cf.bid <= 1 / 19) {
-          cf.delta += cf.min;
-        }
-        cf.bid += cf.delta;
+        cf.bid += cf.min;
       }
+
       if (cf.count % 20 == 0)
         console.table([
           {
@@ -285,7 +287,7 @@ let rollDice = async () => {
 
       if (!cf.r) {
         storeData(cf, path);
-        await sleep(1000);
+        await sleep(0);
         await rollDice();
       } else {
         await sleep(parseInt(params[2]) / 5);
